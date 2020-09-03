@@ -1,0 +1,166 @@
+\section{Recurrencias}
+
+\subsection{Ejemplo 1: Método de iteraciones}
+
+Resolver la siguiente relación de recurrencia.
+
+% les recomiendo usar SIEMPRE este entorno para escribir ecuaciones
+\begin{align*}
+f_n=f_{n-1}+2,\,\underset{\text{Caso base}}{\underbrace{f_0=1}},\,\underset{\text{Dominio}}{\underbrace{n>0}}
+\end{align*}
+En este ejercicio no se puede aplicar \textit{el teorema}, porque no es homogénea la recurrencia. Entonces usaremos el método de iteraciones.
+
+\subsubsection{Iteraciones}
+\begin{align*}
+	k=1.\,f_n&={\color{magenta}f_{n-1}}+2\\
+	k=2.\,f_n&=\underbset{f_{n-1}}{{\color{magenta}f_{n-2}}+2}+2\\
+	k=3.\,f_n&=\underbset{f_{n-2}}{{\color{magenta} f_{n-3}}+2}+2+2
+\end{align*}
+
+\textbf{Nota:} La paramétrica también se puede escribir de la forma
+\begin{align*}
+f_n&=f_{n-k}+\sum_{i=0}^{k-1}{2}
+\end{align*}
+
+Una vez hemos hecho las iteraciones, procedemos a definir la \textbf{ecuación paramétrica}.
+
+\subsubsection{Ecuación paramétrica}
+
+\begin{align}
+\label{eq:ej1-parametrica}
+f(n,k)&=f_{n-k}+2\cdot k
+\end{align}
+
+Llegado este punto, la idea es deshacernos del parámetro $k$, para eso nos valemos de los casos base. A partir del caso base tenemos:
+\begin{align*}
+f_{n-k}=f_{0}\impliedby n-k=0\implies n=k.
+\end{align*}
+Adicionalmente, $f_{n-k}=f_{n-n}=f_0=1$.
+
+La razón de $n-k=0$ es que $n-k$ debe ser igual al \textbf{índice} del caso base.
+
+Reemplazando estos datos en \eqref{eq:ej1-parametrica}, tenemos:
+\begin{align*}
+f_n&=f_0+2\cdot n\\
+&=1+2\cdot n
+\end{align*}
+
+Finalmente, tenemos:
+\begin{align*}
+f_n=2\cdot n+1.
+\end{align*}
+
+\subsection{Ejemplo 2: Método de iteraciones. Serie arimética.}
+
+Resolver la siguiente relación de recurrencia.
+\begin{align*}
+f_n=f_{n-1}+n+1,\,f_0=1,\,n>0.
+\end{align*}
+
+\subsubsection{Método de iteraciones}
+\begin{align*}
+k=1.\,f_n&=f_{n-1}+n+1\\
+k=2.\,f_n&=\underbset{f_{n-1}}{f_{n-2}+(n-1)+1}+(n-0)+1\\
+&=f_{n-2}+(n-1)+(n-0)+1+1\\
+k=3.\,f_n&=f_{n-3}+(n-2)+1+(n-1)+(n-0)+1+1\\
+&=f_{n-3}+(n-2)+(n-1)+(n-0)+1+1+1
+\end{align*}
+
+\subsubsection{Ecuación paramétrica}
+
+\begin{align*}
+f(n,k)&=f_{n-k}+\sum_{i=0}^{k-1}{(n-i)}+k\cdot 1\\
+f(n,k)&=f_{n-k}+\sum_{i=0}^{k-1}{(n-i)}+k\\
+\end{align*}
+
+Primero, nos deshacemos del parámetro $k$.
+
+$$n-k=0\implies n =k\implies f_{n-k}=f_0$$
+
+Reemplazamos esto en la ecuación paramétrica.
+
+\begin{align}
+\label{eq:ej2-non-param}
+f_n&=f_{0}+\sum_{i=0}^{n-1}{(n-i)}+n\\
+\end{align}
+
+Esta sumatoria la resolvemos como la suma de una progresión arimética.
+
+\begin{align*}
+A(n, a, b)=\sum_{i=0}^{n}{(a+b\cdot i)}=a+b+a+2b+\cdots+(a+nb)
+\end{align*}
+
+Donde
+\begin{align}
+\label{eq:sum-aritm}
+	A(n, a, b)=\sum_{i=0}^{n}{(a+b\cdot i)}=a\cdot (n+1)+\cfrac{b\cdot n(n+1)}{2}
+\end{align}
+
+Entonces, a partir de esto, tenemos que 
+\begin{align*}
+A(n-1, n, -1)&=\sum_{i=0}^{n-1}{(n-i)}=n\cdot (n-1+1)+\cfrac{(-1)\cdot (n-1)\cdot (n-1+1)}{2}\\
+&=n^2-\cfrac{(n-1)\cdot n}{2}=\cfrac{2\cdot n^2-n^2+n}{2}=\cfrac{n^2+n}{2}\\
+&=\cfrac{n(n+1)}{2}.
+\end{align*}
+
+Reemplazamos entonces el resultado de la sumatoria en \eqref{eq:ej2-non-param}.
+\begin{align*}
+f_n&=f_0+\sum_{i=0}{n-1}{(n-i)}+n\\
+&=1+\cfrac{n(n+1)}{2}+n=\cfrac{n(n+1)}{2}+(n+1)=\cfrac{n(n+1)+2(n+1)}{2}\\
+f_n&=\cfrac{(n+1)(n+2)}{2}
+\end{align*}
+Finalmente,
+\begin{align*}
+f_n&=\cfrac{(n+1)(n+2)}{2}.
+\end{align*}
+
+\subsection{Ejemplo 3: Método de iteraciones. Serie geométrica}
+
+\begin{align*}
+f_n&=2f_{n-1}+3,\,f_0=2,\,n>0.
+\end{align*}
+
+\subsubsection{Método de iteraciones}
+\begin{align*}
+k=1.\, f_n&=2\cdot f_{n-1}+3\\
+k=2.\, f_n&=2\cdot(2\cdot f_{n-2}+3)+3\\
+&=2^2\cdot f_{n-2}+2^1\cdot 3 +2^0\cdot 3\\
+k=3.\,f_n&=2^2\cdot (2\cdot f_{n-3}+3)+2^1\cdot 3 + 2^0\cdot 3\\
+&=2^3\cdot f_{n-3}+2^2\cdot 3 + 2^1\cdot 3 + 2^0\cdot 3
+\end{align*}
+
+\subsubsection{Ecuación paramétrica}
+\begin{align*}
+f(n,k)=2^k\cdot f_{n-k}+\sum_{i=0}^{k-1}{3\cdot 2^i}
+\end{align*}
+
+Nos desharemos de $k$. A partir del caso base, tenemos
+$$n-k=0\implies n=k\implies f_{n-k}=f_0$$
+Entonces:
+\begin{align*}
+f_n=2^n\cdot f_{0}+\sum_{i=0}^{n-1}{3\cdot 2^i}
+\end{align*}
+
+Esta sumatoria la resolvemos como la suma de una progresión geométrica.
+\begin{align}
+\label{eq:sum-geom}
+G(n, r, a) = \sum_{i=0}^{n-1}{a\cdot r^i}=a\cdot\cfrac{1-r^n}{1-r}
+\end{align}
+
+Por lo tanto:
+\begin{align*}
+f_n&=2^n\cdot f_{0}+\underbset{G(n,2,3)}{\sum_{i=0}^{n-1}{3\cdot 2^i}}=2\cdot 2^{n}+3\cdot \cfrac{1-2^n}{1-2}\\
+&=2^{n+1}+3\cdot (2^n-1)=2^n\cdot 2+2^n\cdot 3-3=2^n\cdot (2+3)-3\\
+f_n&=5\cdot 2^n-3.
+\end{align*}
+
+Finalmente, la solución a la recurrencia es:
+$$f_n=5\cdot 2^n-3.$$
+
+\subsection{Ejercicios}
+\begin{itemize}
+\item $f_n=3\cdot f_{n-1}+2,\,n>1,\,f_1=2$
+\item $f_n=4\cdot f_{n-1}+2,\,n>2,\,f_2=0$
+\item $f_n=\cfrac{1}{2}\cdot f_{n-1}+2,\,n>0,\,f_0=1$
+\item $f_n= f_{n-1}+\cfrac{n}{3},\,n>0,\,f_0=1$
+\end{itemize}
