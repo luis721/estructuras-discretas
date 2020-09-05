@@ -1,0 +1,165 @@
+\section{Cambio de Variable}
+
+\subsection{Ejemplo 1: Transformación logarítmica}
+
+\begin{align*}
+f_n=\sqrt{f_{n-1}\cdot f_{n-2}}\,,f_0=1,\,f_1=1,\,n>1.
+\end{align*}
+
+En este caso aprovecharemos las siguientes propiedades del logaritmo:
+\begin{align*}
+\log(a\cdot b)=\log(a)+\log(b)
+\end{align*}
+
+además
+\begin{align*}
+\log(a^b)=b\log a
+\end{align*}
+
+Entonces, al aplicar logaritmo a ambos lados de la recurrencia:
+\begin{align*}
+\log f_n&=\cfrac{1}{2}\cdot \log (f_{n-1}\cdot f_{n-2})\\
+&=\cfrac{1}{2}\cdot \left(\log f_{n-1}+\log{f_{n-2}}\right)
+\end{align*}
+
+Aquí aplicamos el siguiente cambio de variable:
+\begin{align*}
+g_n&=\log f_n,\,\underbset{\text{Casos base}}{{\color{magenta} g_0=\log f_0,\,g_1=\log f_1}}
+\end{align*}
+Reescribiendo la recurrencia a partir del cambio de variable se obtiene:
+\begin{align*}
+	g_n=\cfrac{1}{2}\cdot\left(g_{n-1}+g_{n-2}\right)
+\end{align*}
+
+
+\subsection{Ejemplo 2:}
+\begin{align*}
+f_n=\sqrt{1+f_{n-1}^2},\,f_0=0,\,n>0
+\end{align*}
+
+Si aplicamos logaritmo, obtenemos:
+\begin{align*}
+\log f_n=\cfrac{1}{2}\cdot \log\left(1+f_{n-1}^2\right)
+\end{align*}
+
+Lo que no es tan sencillo de resolver, porque no hay manera de deshacernos de la suma dentro del logaritmo.
+
+Aplicaremos otra transformación al elevar ambos lados al cuadrado.
+\begin{align*}
+	f_n^2=1+f^2_{n-1}
+\end{align*}
+
+Procedemos a realizar el siguiente cambio de variable
+$$g_n=f_{n}^2,\,g_0=f_0^2$$
+Por lo tanto
+\begin{align*}
+g_n=g_{n-1}+1,\,g_0=0,\,n>0
+\end{align*}
+
+\subsubsection{Método de iteraciones}
+\begin{align*}
+k=1.\,g_n&=g_{n-1}+1\\
+k=2.\,g_n&=g_{n-2}+1+1\\
+k=3.\,g_n&=g_{n-3}+1+1+1\\
+\end{align*}
+
+Escribimos la ecuación paramétrica:
+\begin{align*}
+g(n,k)&=g_{n-k}+\sum_{i=0}^{k-1}{1}\\
+&=g_{n-k}+k
+\end{align*}
+Lo siguiente es deshacernos del parámetro $k$. Esto se hace usando los casos base.
+\begin{align*}
+n-k=0\implies n=k\implies g_{n-k}=g_0
+\end{align*}
+Por lo tanto:
+\begin{align*}
+g_n&=g_0+n=0+n\\
+g_n&=n.
+\end{align*}
+
+Una vez hemos hallado $g_n$, debemos hallar $f_n$.
+
+Recordemos que
+\begin{align*}
+g_n&=f_{n}^2
+\end{align*}
+por lo tanto (luego de despejar $f_n$)
+\begin{align*}
+f_n=\sqrt{g_n}
+\end{align*}
+Por lo que finalmente obtenemos:
+\begin{align*}
+f_n=\sqrt{n}.
+\end{align*}
+
+\subsubsection{Una forma de demostrar}
+A partir de la recurrencia original
+\begin{align*}
+	f_n=\sqrt{1+f_{n-1}^2}
+\end{align*}
+reemplazamos la expresión cerrada que se halló para $f_n$.
+
+\begin{align*}
+\sqrt{n}&=\sqrt{1+\left(\sqrt{n-1}\right)^2}\\
+&=\sqrt{1+n-1}=\sqrt{n-0}\\
+\sqrt{n}&=\sqrt{n}.
+\end{align*}
+
+
+\subsection{Ejemplo 3}
+\begin{align*}
+f_n&=f_{n-1}\cdot \sqrt{1-f_{n-2}^2},\,n>0,\,f_0=\frac{1}{2}
+\end{align*}
+
+Elevando al cuadrado ambos lados de la recurrencia se obtiene:
+\begin{align*}
+f_n^2&=f_{n-1}^2\cdot(1-f_{n-2}^2)=f_{n-1}^2-f_{n-1}^2\cdot f_{n-2}^2
+\end{align*}
+
+al intentar aplicar logaritmo sucede lo siguiente:
+\begin{align*}
+2\log f_n&=\log f_{n-1}^2+\log(1-f_{n-2}^2),
+\end{align*}
+ó
+\begin{align*}
+2\log f_n&=\log(f_{n-1}^2-f_{n-1}^2\cdot f_{n-2}^2),
+\end{align*}
+lo que muy probablemente no nos lleve a ningún lado.
+
+\subsection{Ejemplo 4}
+Resolver la siguiente relación de recurrencia:
+\begin{align*}
+f_n&=2\cdot f_{n-1}+2^n,\,n>0,\,f_0=1\\
+\end{align*}
+
+Dividimos $2^n$ de ambos lados.
+
+\begin{align*}
+\cfrac{f_n}{2^n}&=2\cdot\cfrac{f_{n-1}}{2^n} +\cfrac{2^n}{2^n}\\
+\cfrac{f_n}{2^n}&=\cfrac{f_{n-1}}{2^{n-1}}+1
+\end{align*}
+
+Ahora hacemos el cambio de variable:
+$$g_n=\cfrac{f_n}{2^n},\,g_0=\cfrac{f_0}{2^0}=1.$$
+
+Por lo que tenemos la nueva recurrencia:
+\begin{align*}
+g_n&=g_{n-1}+1,\,n>0,\,g_0=1.
+\end{align*}
+Donde $g_n=n+1$.
+Y a partir del cambio de variable que se hizo, al despejar $f_n$ se obtiene:
+
+\begin{align*}
+f_n&=2^n\cdot g_n=2^n\cdot (n+1).
+\end{align*}
+Por lo que tenemos la solución a nuestra recurrencia:
+$$f_n=n2^n+2^n.$$
+
+\subsubsection{Una forma de demostrar}
+\begin{align*}
+f_n&=2\cdot f_{n-1}+2^n\\
+2^n\cdot (n+1)&=2\cdot 2^{n-1}\cdot n + 2^n\\
+&=2^n\cdot n + 2^n\\
+&=2^n\cdot (n+1).
+\end{align*}
