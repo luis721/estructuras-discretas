@@ -1,0 +1,141 @@
+\section{Relaciones de recurrencia}
+
+\subsection{Ejemplo 1}
+Resolver la siguiente relación de recurrencia.
+
+$$f_n=f_{n-1}+(-1)^n,\,f_1=2,\,n>1$$
+
+\subsection{Metodo de iteraciones}
+\begin{align*}
+k=1.\,f_n&=f_{n-1}+(-1)^n\\
+k=2.\,f_n&=f_{n-2}+(-1)^{n-1}+(-1)^n\\
+k=3.\,f_n&=f_{n-3}+(-1)^{n-2}+(-1)^{n-1}+(-1)^n
+\end{align*}
+
+A partir de esto escribimos la ecuación paramétrica:
+\begin{align*}
+f(n,k)=f_{n-k}+\sum_{i=0}^{k-1}{(-1)^{n-i}}
+\end{align*}
+
+A partir del caso base, tenemos:
+$$n-k=1\implies k=n-1\implies f_{n-k}=f_1.$$
+
+Aplicamos esto sobre la ecuación paramétrica y obtenemos entonces:
+\begin{align*}
+f_n&=f_{1}+\sum_{i=0}^{n-2}{(-1)^{n-i}}.
+\end{align*}
+
+Pero sabemos que
+\begin{align*}
+f_n&=f_{1}+\sum_{i=0}^{n-2}{(-1)^{n-i}}\\
+&=f_1+(-1)^{n-0}+(-1)^{n-1}+(-1)^{n-2}+\cdots+{(-1)^{n-(n-2)}}\\
+&=f_1+(-1)^n\cdot\left((-1)^0+(-1)^{-1}+(-1)^{-2}+(-1)^{-3}+\cdots+(-1)^{n-2}\right)
+\\
+&=f_1+\sum_{i=0}^{n-2}{(-1)^{-i}}=f_1+\sum_{i=0}^{n-2}{\cfrac{1}{(-1)^i}}=f_1+\sum_{i=0}^{n-2}{\left(\cfrac{1}{-1}\right)^i}
+\end{align*}
+
+El siguiente paso es resolver la siguiente expresión
+\begin{align*}
+f_n&=f_1+\sum_{i=0}^{n-2}{\left(\cfrac{1}{-1}\right)^i}=f_1+\sum_{i=0}^{n-2}{\left(-1\right)^i}
+\end{align*}
+
+Esta sumatoria la resolvemos como la suma de una progresión geométrica.
+\begin{align}
+\label{eq:sum-geom}
+G(n, r, a) = \sum_{i=0}^{n-1}{a\cdot r^i}=a\cdot\cfrac{1-r^n}{1-r}
+\end{align}
+
+\begin{align*}
+f_n&=f_1+\underbset{G(n-1,-1,1)}{\sum_{i=0}^{n-2}{\left(\cfrac{1}{-1}\right)^i}}=f_1+1\cdot \cfrac{1-(-1)^{n-1}}{1-(-1)}\\
+&=2+\cfrac{1-(-1)^{n-1}}{2}=\cfrac{4+1-(-1)^{n-1}}{2}=\cfrac{5-(-1)^{n-1}}{2}
+\end{align*}
+
+Por lo que la solución a la recurrencia es:
+\begin{align*}
+f_n&=\cfrac{5+(-1)^n}{2}
+\end{align*}
+
+\subsubsection{Prueba}
+Caso base:
+\begin{align*}
+f_1&=\cfrac{5-1}{2}=\cfrac{4}{2}=2.
+\end{align*}
+
+\begin{align*}
+f_n&=f_{n-1}+(-1)^n\\
+\cfrac{5+(-1)^n}{2}&=\cfrac{5+(-1)^{n-1}}{2}+(-1)^n\\
+&=\cfrac{5+(-1)^{n-1}+2\cdot (-1)^n}{2}=\cfrac{5-(-1)^{n}+2\cdot (-1)^n}{2}\\
+&=\cfrac{5+(-1)^n}{2}.
+\end{align*}
+
+\subsection{Ejempo 2}
+Resolver la siguiente relación de recurrencia:
+\begin{align*}
+f_n&=-f_{n-1}+1,\,f_2=1,\,n>2.
+\end{align*}
+
+Dividimos por $(-1)^n$ de ambos lados.
+
+\begin{align*}
+\cfrac{f_n}{(-1)^n}&=\cfrac{-f_{n-1}}{(-1)^n}+\cfrac{1}{(-1)^n}\\
+\cfrac{f_n}{(-1)^n}&=\cfrac{f_{n-1}}{(-1)^{n-1}}+(-1)^n\\
+\end{align*}
+Aplicamos el siguiente cambio de variable:
+\begin{align*}
+g_n&=\cfrac{f_n}{(-1)^n}
+\end{align*}
+
+Por lo que tenemos la siguiente relación de recurrencia:
+\begin{align*}
+g_n&=g_{n-1}+(-1)^n,\,g_2=\cfrac{f_2}{(-1)^2}=1,\,n>2
+\end{align*}
+
+Esta recurrencia es similar a la resuelta en en el primer ejemplo. Lo único que cambia es el índice y valor del caso base.
+
+\subsection{Ejemplo 3}
+Resolver la siguiente relación de recurrencia
+\begin{align*}
+nf_n&=(n+1)f_{n-1}+2n,\,n>0,\,f_0=0
+\end{align*}
+
+Primero reescribimos nuestra recurrencia.
+\begin{align*}
+f_n&=\cfrac{n+1}{n}f_{n-1}+2
+\end{align*}
+
+De aquí:
+\begin{align*}
+\cfrac{f_{n}}{n+1}&=\cfrac{f_{n-1}}{n}+\cfrac{2}{n+1}
+\end{align*}
+
+\subsection{Ejemplo 4}
+$$f_n=-2\cdot n\cdot f_{n-1}+3\cdot n\cdot (n-1)\cdot f_{n-2},\,f_0=1,\,f_1=2,\,n>1 $$
+
+Dividimos ambos lados sobre $n!$.
+\begin{align*}
+\cfrac{f_n}{n!}&=-2\cdot\cfrac{n\cdot f_{n-1}}{n!}+3\cdot \cfrac{n\cdot (n-1)\cdot f_{n-2}}{n!}
+\end{align*}
+
+Recordemos que:
+$n!=n\cdot (n-1)!$
+Entonces:
+\begin{align*}
+\cfrac{f_n}{n!}&=-2\cdot\cfrac{n\cdot f_{n-1}}{n\cdot (n-1)!}+3\cdot \cfrac{n\cdot (n-1)\cdot f_{n-2}}{n\cdot (n-1)\cdot (n-2)!}\\
+\cfrac{f_n}{n!}&=-2\cdot \cfrac{f_{n-1}}{(n-1)!}+3\cdot \cfrac{f_{n-2}}{(n-2)!}
+\end{align*}
+
+Entonces definimos:
+$$g_n=\cfrac{f_n}{n!}$$
+
+Por lo que nos queda la siguiente recurrencia:
+\begin{align*}
+g_n&=-2\cdot g_{n-1}+3\cdot g_{n-2},\,g_0=1,\,g_1=2,\,n>1.
+\end{align*}
+
+\subsection{Ejercicios}
+\begin{itemize}
+\item $f_n=2^n\cdot f_{n-1}+1,\,f_1=2,\,n>1$
+\item $n\cdot f_n=(n+t-1)\cdot f_{n-1},\,f_0=1,\,n>0$
+
+\item $n\cdot f_n=3\cdot f_{n-1}+2^n,\,f_0=1,\,n>0$
+\end{itemize}
