@@ -1,0 +1,52 @@
+\section{Funciones Generadoras Exponenciales (EGFs)}
+
+Dada una secuencia $\seq{f_n}_{n\geq0}$, entonces su EGF $F(z)$ viene dada de la siguiente manera:
+
+\begin{align*}
+F(z)&=f_0\cdot\ek{0}+f_1\cdot\ek{1}+f_2\cdot\ek{2}+f_3\cdot\ek{3}+\cdots=\sum_{n\geq0}{f_n\cdot \ek{n}}.
+\end{align*}
+
+Esto es: Convertimos los términos de las secuencia el coeficientes de una serie de potencias.
+
+\subsection{Ejemplo 1}
+
+Dada la secuencia $\seq{1}_{n\geq0}$, hallar su función generadora.
+
+\begin{align*}
+F(z)&=1\cdot\ek{0}+1\cdot\ek{1}+1\cdot\ek{2}+1\cdot\ek{3}+\cdots=\sum_{n\geq0}{1\cdot \ek{n}}.
+\end{align*}
+
+Donde 
+\begin{align*}
+F(z)&=\sum_{n\geq0}{1\cdot\ek{n}}=e^z.
+\end{align*}
+
+Por lo tanto, la EGF de $\seq{1}_{n\geq0}$ es $e^z$.
+
+Esto se escribe:
+$$n![z^n]e^z=1.$$
+
+\subsection{Ejemplo 2}
+Dada la secuencia $\seq{2}_{n\geq0}$, hallar su función generadora.
+
+\begin{align*}
+F(z)&=2\cdot\ek{0}+2\cdot\ek{1}+2\cdot\ek{2}+2\cdot\ek{3}+\cdots=\sum_{n\geq0}{2\cdot \ek{n}}\\
+&=2\cdot\left(1\cdot\ek{0}+1\cdot\ek{1}+1\cdot\ek{2}+1\cdot\ek{3}+\cdots\right)=2\cdot\left(\sum_{n\geq0}{1\cdot\ek{n}}\right)\\
+F(z)&=2\cdot e^z.
+\end{align*}
+
+Entonces:
+$$n![z^n]2\cdot e^z=2.$$
+
+\subsection{Ejemplo 2}
+Dada la secuencia $\seq{2}_{n\geq0}$, hallar su función generadora.
+%
+\begin{align*}
+F(z)&=2\cdot\ek{0}+2\cdot\ek{1}+2\cdot\ek{2}+2\cdot\ek{3}+\cdots=\sum_{n\geq0}{2\cdot \ek{n}}\\
+&=
+\sum_{n\geq0}{(1+1)\cdot \ek{n}}=\underbset{e^z}{\sum_{n\geq0}{1\cdot \ek{n}}}+\underbset{e^z}{\sum_{n\geq0}{1\cdot \ek{n}}}\\
+F(z)&=e^z+e^z=2\cdot e^z.
+\end{align*}
+
+Entonces:
+$$n![z^n]2\cdot e^z=2.$$
