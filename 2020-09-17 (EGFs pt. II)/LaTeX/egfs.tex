@@ -1,0 +1,180 @@
+\section{Funciones Generadoras Exponenciales (EGFs)}
+
+Dada una secuencia $\seq{f_n}_{n\geq0}$, entonces su EGF $F(z)$ viene dada de la siguiente manera:
+
+\subsection{Definición}
+
+\begin{align*}
+F(z)&=f_0\cdot\ek{0}+f_1\cdot\ek{1}+f_2\cdot\ek{2}+f_3\cdot\ek{3}+\cdots=\sum_{n\geq0}{f_n\cdot \ek{n}}.
+\end{align*}
+
+Esto es: Convertimos los términos de las secuencia el coeficientes de una serie de potencias.
+
+Una serie de potencias es algo de la forma
+\begin{align*}
+F(z)&=\sum_{n\geq0}{f_n\cdot k(z)}
+\end{align*}
+
+Donde $k(z)$ es el \textit{kernel}, que debe ser de la forma $z^{p(n)}\cdot q(n)$.
+
+Un ejemplo básico sería:
+\begin{align*}
+F(z)&=\sum_{n\geq0}{f_n\cdot z^n}
+\end{align*}
+
+En el caso de las funciones generadoras exponenciales (EGFs) el \textit{kernel} es
+$\frac{z^n}{n!}$.
+
+Lo que significa que la EGF de una secuencia $\seq{f_n}_{n\geq0}$ es:
+\begin{align*}
+F(z)&=\sum_{n\geq0}{f_n\cdot \ek{n}}
+\end{align*}
+
+El \textit{kernel} en una EGF \textbf{debe} estar explícito.
+
+\subsection{Ejemplos}
+
+\subsubsection{Ejemplo 1}
+
+Dada la secuencia $\seq{1}_{n\geq0}$, determinar su EGF. 
+
+Esto significa que $f_n=1,\,n\geq0$. Por lo tanto esto representa la secuencia $\langle1,1,1,1,\dots,1,\dots\rangle$. 
+En general $f_n$ es $\langle f_0,f_1,f_2,f_3,\dots,f_n,\dots\rangle$.
+
+Dado esto, la EGF de $\seq{1}_{n\geq0}$ es:
+\begin{align*}
+F(z)&=\sum_{n\geq0}{\underbset{f_n}{1}\cdot \ek{n}}=1\cdot\ek{0}+1\cdot\ek{1}+1\cdot\ek{2}+1\cdot\ek{3}+\cdots+1\cdot\ek{n}+\cdots\\
+F(z)&=e^z.
+\end{align*}
+
+Esto se escribe:
+$$n![z^n]e^z=1.$$
+
+Esto se lee como \textit{el coeficiente de la EGF $F(z)=e^z$ es 1, para $n\geq0$}.
+
+\subsubsection{Ejemplo 2}
+
+Dada la secuencia $\seq{2}_{n\geq0}$, determinar su EGF.
+
+Esto significa que la secuencia es:
+\begin{align*}
+\langle2,\,2,\,2,\,2\,,\dots,\,2,\,\dots\rangle
+\end{align*}
+
+Es decir, $f_n=2$. 
+
+Primero definimos $F(z)$ como su EGF:
+
+\begin{align*}
+F(z)&=\sum_{n\geq0}{2\cdot \ek{n}}
+\end{align*}
+
+Este ejercicio se puede resolver de dos maneras distintas
+
+\paragraph{Una posible solución}
+
+\begin{align*}
+F(z)&=\sum_{n\geq0}{2\cdot \ek{n}}=2\cdot\ek{0}+2\cdot\ek{1}+\cdots+2\cdot\ek{n}+\cdots
+\end{align*}
+Entonces despejamos el 2 por ser una constante respecto al índice de la sumatoria ($n$) y por estar multiplicando a todos los términos.
+
+\begin{align*}
+F(z)&=2\cdot\underbset{e^z}{\left(\sum_{n\geq0}{1\cdot \ek{n}}\right)}=2\cdot\underbset{e^z}{\left(1\cdot\ek{0}+1\cdot\ek{1}+\cdots+1\cdot\ek{n}+\cdots\right)}\\
+F(z)&=2\cdot e^z.
+\end{align*}
+
+Es decir: La función generadora de $\seq{2}_{n\geq0}$ es $2\cdot e^z$.
+
+\paragraph{Otra forma de resolverlo}
+
+\begin{align*}
+F(z)&=\sum_{n\geq0}{2\cdot \ek{n}}=2\cdot\ek{0}+2\cdot\ek{1}+\cdots+2\cdot\ek{n}+\cdots
+\end{align*}
+
+Si en lugar de un $2$ hubiese un 1 en el coeficiente, esto sería más sencillo.
+\begin{align*}
+F(z)&=\sum_{n\geq0}{(1+1)\cdot \ek{n}}=(1+1)\cdot\ek{0}+(1+1)\cdot\ek{1}+\cdots+(1+1)\cdot\ek{n}+\cdots
+\end{align*}
+
+Recordemos que una propiedas de las sumatorias es:
+\begin{align*}
+\sum_{P(n)}{\left(f_n+g_n\right)}=\sum_{P(n)}{f_n}+\sum_{P(n)}{g_n}.
+\end{align*}
+Por lo tanto, en nuestro ejemplo tenemos
+\begin{align*}
+F(z)&=\underbset{e^z}{\left(\sum_{n\geq0}{1\cdot \ek{n}}\right)}+\underbset{e^z}{\left(\sum_{n\geq0}{1\cdot \ek{n}}\right)}\\
+&=e^z+e^z=2\cdot e^z\\
+F(z)&=2\cdot e^z.
+\end{align*}
+
+\paragraph{Comprobación}
+Es posible comprobar nuestra solución. Esto se hace de la siguiente manera:
+
+Si $F(z)$ es la EGF de $f_n$, entonces, la $n$-ésima derivada de $F(z)$ evaluada en 0 debe ser igual a $f_n$.
+
+Es decir $F^{(n)}(0)=f_n.$
+
+En este caso, la $n$-ésima derivada de $2\cdot e^z$ evaluada en 0 debe ser igual a 2.
+
+\subsubsection{Ejemplo 3}
+
+Hallar la EGF de $\se{n+1}{n>4}$.
+
+Primero definimos $F(z)$ como la EGF de esta secuencia.
+
+\begin{align}
+\label{eq:nmas1}
+F(z)&=\sum_{n>4}{\left(n+1\right)}\cdot\ek{n}
+\end{align}
+
+\paragraph{Una forma de resolverlo}
+En este enfoque partimos de $F(z)$.
+Ahora, cambiaremos el dominio de estas sumatorias, de modo que queden como está definido para $F(z)$ en \eqref{eq:nmas1}.
+
+\begin{align*}
+\underbset{F(z)}{\sum_{n\geq5}{(n+1)\cdot \ek{n}}}&=\left(\sum_{n\geq5}{n\cdot \ek{n}}\right)+\left(\sum_{n\geq5}{1\cdot \ek{n}}\right)&\langle 0, 0,0,0,0,\underbset{n\geq5}{6,7,8,\,\cdots,n+1,\dots}\rangle
+\end{align*}
+Esto se puede re-escribir como
+\begin{align*}
+F(z)&=\left(\underbset{ze^z}{\sum_{n\geq0}{n\cdot \ek{n}}}-\sum_{0\leq n\leq 4}{n\cdot\ek{n}}\right)+\left(\underbset{e^z}{\sum_{1\geq0}{1\cdot \ek{n}}}-\sum_{0\leq n\leq 4}{1\cdot\ek{n}}\right)\\
+F(z)&=ze^z+e^z-\sum_{0\leq n\leq 4}{n\cdot\ek{n}}-\sum_{0\leq n\leq 4}{1\cdot\ek{n}}
+\end{align*}
+
+Expandiendo las sumatorias se obtiene
+\begin{align*}
+F(z)=&ze^z+e^z\\&-\left(0\cdot\ek{0}+1\cdot\ek{1}+2\cdot\ek{2}+3\cdot\ek{3}+4\cdot\ek{4}\right)
+-\left(1\cdot\ek{0}+1\cdot\ek{1}+1\cdot\ek{2}+1\cdot\ek{3}+1\cdot\ek{4}\right)\\
+=&ze^z+e^z\\&-\left(0\cdot\ek{0}+1\cdot\ek{1}+2\cdot\ek{2}+3\cdot\ek{3}+4\cdot\ek{4}
++1\cdot\ek{0}+1\cdot\ek{1}+1\cdot\ek{2}+1\cdot\ek{3}+1\cdot\ek{4}\right)\\
+=&ze^z+e^z\\&-\left(1\cdot\ek{1}+2\cdot\ek{2}+3\cdot\ek{3}+4\cdot\ek{4}
++1\cdot\ek{0}+1\cdot\ek{1}+1\cdot\ek{2}+1\cdot\ek{3}+1\cdot\ek{4}\right)\\
+=&ze^z+e^z-
+\left(1\cdot\ek{0}+2\cdot\ek{1}+3\cdot\ek{2}+4\cdot\ek{3}+5\cdot\ek{4}\right)\\
+F(z)=&ze^z+e^z-\left(1+2z+3\cdot\ek{2}+4\cdot\ek{3}+5\cdot\ek{4}\right)
+\end{align*}
+
+\paragraph{Otra posible solución}
+En esta primera solución a este problema, partiremos de la EGF básica.
+
+\begin{align*}
+e^z&=\sum_{n\geq0}{\ek{n}}
+\end{align*}
+
+La idea es aplicar distintas operaciones sobre esta EGF hasta llegar a la expresión de \eqref{eq:nmas1}.
+
+Entonces aplicamos la operación de multiplicación por el índice.
+% ---
+\begin{align*}
+z\cdot e^z&=\sum_{n\geq0}{n\cdot \underbset{f_{n-1}}{1}\cdot \ek{n}}&\langle0, 1, 2,\dots,n,\dots\rangle\\
+z\cdot e^z&=\sum_{n\geq0}{n\cdot \ek{n}}&\langle0, 1, 2,\dots,n,\dots\rangle
+\end{align*}
+
+El siguiente paso es procurar que el dominio de esta sumatoria sea el mismo de \eqref{eq:nmas1}.
+
+\begin{align*}
+\sum_{n\geq5}{n\cdot \ek{n}}&=\sum_{n\geq0}{n\cdot\ek{n}}-\sum_{0\leq n\leq 4}{n\cdot \ek{n}}\\
+\sum_{n\geq5}{n\cdot \ek{n}}+\sum_{n\geq5}{1\cdot \ek{n}}&=\sum_{n\geq0}{n\cdot\ek{n}}-\sum_{0\leq n\leq 4}{n\cdot \ek{n}}+\sum_{n\geq5}{1\cdot \ek{n}}\\
+\underbset{F(z)}{\sum_{n\geq5}{\left(n+1\right)\cdot \ek{n}}}&=\sum_{n\geq0}{n\cdot\ek{n}}-\sum_{0\leq n\leq 4}{n\cdot \ek{n}}+\sum_{n\geq0}{1\cdot \ek{n}}-\sum_{0\leq n\leq 4}{1\cdot \ek{n}}\\
+F(z)&=\left(\sum_{n\geq0}{n\cdot\ek{n}}\right)+\left(\sum_{n\geq0}{1\cdot\ek{n}}\right)-\left(\sum_{0\leq n\leq 4}{n\cdot \ek{n}}+\sum_{0\leq n\leq 4}{1\cdot \ek{n}}\right)
+\end{align*}
+Esta parte ya está resuelta en la forma de resolverlo que se mostró antes.
