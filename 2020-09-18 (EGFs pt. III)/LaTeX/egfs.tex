@@ -1,0 +1,80 @@
+\section{Funciones Generadoras Exponenciales (EGFs)}
+
+
+\subsection{Multiplicación por el índice}
+
+\subsubsection{Ejemplo 1}
+Dada la EGF $F(z)=e^z$, 
+
+\begin{align*}
+e^z&=\sum_{n\geq0}{\underbset{f_n}{1}\cdot\ek{n}}
+\end{align*}
+
+el resultado aplicar la multiplicación por el índice a esta EGF es el siguiente:
+
+\begin{align*}
+z\cdot e^z&=\sum_{n\geq0}{n\cdot \underbset{f_{n-1}}{1}\cdot\ek{n}}
+\end{align*}
+
+\subsubsection{Ejemplo 2}
+
+Dada la EGF $F(z)$ definida como
+\begin{align*}
+F(z)=\cfrac{e^z-1}{z}&=\sum_{n\geq0}{\underbset{f_n}{\cfrac{1}{n+1}}\cdot \ek{n}}
+\end{align*}
+
+Al aplicar la operación de multiplicación por el índice, se obtiene:
+
+\begin{align*}
+zF(z)&=z\cdot \cfrac{e^z-1}{z}=\sum_{n\geq0}{n\cdot \underbset{f_{n-1}}{\cfrac{1}{n}}\cdot \ek{n}}\\
+&=e^z-1=\sum_{n\geq1}{n\cdot\cfrac{1}{n}\cdot \ek{n}}=\sum_{n\geq1}{1\cdot \ek{n}} & \langle0,1,1,\dots,1,\dots\rangle.
+\end{align*}
+Si $f_n=\frac{1}{n+1}$, entonces $f_{n-1}=\frac{1}{n}$.
+
+\subsection{Composición de funciones}
+
+Dada la EGF $F(z)=e^z$, 
+
+\begin{align*}
+F(z)=e^z&=\sum_{n\geq0}{\ek{n}}\\
+F(2z)=e^{2z}&=\sum_{n\geq0}{\cfrac{(2\cdot z)^n}{n!}}=\sum_{n\geq0}{2^n\cdot \ek{n}}\\
+\end{align*}
+% --
+Es decir:
+$$n![z^n]e^{2z}=2^n.$$
+ó
+$$f_n=2^n,\,n\geq0.$$
+\subsection{Desplazamiento}
+
+Hallar la EGF de $\se{\binom{n}{3}}{n\geq2}$.
+
+Primero definimos $F(z)$ como la EGF de la secuencia.
+\begin{align*}
+F(z)&=\sum_{n\geq2}{\left(n-2\right)\cdot\ek{n}}
+\end{align*}
+
+Partiremos de la siguiente EGF.
+% --
+\begin{align*}
+ze^z=\sum_{n\geq0}{n\cdot\ek{n}}
+\end{align*}
+% --
+Vamos a hacer una sustitución en la sumatoria. Esta es la de sustituir $n$ por $n-2$.
+% --
+\begin{align*}
+ze^z&=\sum_{n-2\geq0}{(n-2)\cdot\cfrac{z^{n-2}}{(n-2)!}}\\
+ze^z&=\sum_{n\geq2}{(n-2)\cdot\cfrac{z^{n-2}}{(n-2)!}}
+\end{align*}
+% --
+Multiplicamos por $z^2$ de ambos lados
+\begin{align*}
+z^3e^z&=\sum_{n\geq2}{(n-2)\cdot\cfrac{z^n}{(n-2)!}}=\sum_{n\geq2}{(n-2)\cdot\cfrac{z^n}{(n-2)!}\cdot\cfrac{(n-1)\cdot n}{(n-1)\cdot n}}\\
+&=\sum_{n\geq2}{(n-2)\cdot(n-1)\cdot n\cdot \ek{n}}\\
+z^3e^z&=\sum_{n\geq2}{\binom{n}{3}\cdot 3!\cdot \ek{n}}\\
+\end{align*}
+
+\paragraph{Nota:}
+\begin{align*}
+\binom{n}{3}&=\cfrac{n!}{3!\cdot (n-3)!}=\cfrac{n\cdot (n-1)\cdot (n-2)\cdot (n-3)!}{3!\cdot (n-3)!}\\
+&=\cfrac{n\cdot (n-1)\cdot(n-2)}{3!}.
+\end{align*}
