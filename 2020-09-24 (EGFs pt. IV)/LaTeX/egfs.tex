@@ -1,0 +1,122 @@
+\section{Funciones Generadoras Exponenciales (EGFs)}
+
+\subsection{Ejemplo 1}
+
+Dada la secuencia $\se{1}{n\geq0,\,n\bmod2=0}$.
+
+Esta secuencia es
+$$\langle1,\,0,\,1,\,0,\dots,\,1,\,0,\dots\rangle$$.
+
+Definimos $F(z)$ como la EGF de esta secuencia.
+\begin{align*}
+F(z)&=\sum_{\underset{n\bmod 2=0}{n\geq0}}{1\cdot\ek{n}}
+\end{align*}
+
+Expandiendo esta serie se obtiene
+\begin{align*}
+F(z)&=1\cdot\ek{0}+1\cdot\ek{2}+1\cdot\ek{4}+\cdots+1\cdot\cfrac{z^{2n}}{(2n)!}+\cdots
+\end{align*}
+
+\subsubsection*{Una posible solución}
+
+Podemos definir este $f_n$ como
+\begin{align*}
+f_n&=f_{n-2},\,n>1,\,f_0=1,\,f_1=0.
+\end{align*}
+% --
+\begin{table}[ht!]	\centering
+\begin{tabular}{|c|c|}
+\hline
+$n$ & $f_n$\\
+\hline
+0 & 1\\
+1 & 0\\
+2 & 1\\
+3 & 0\\
+4 & 1\\
+\vdots & \vdots\\
+\hline
+\end{tabular}
+\caption{Primeros valores de $f_n$}
+\end{table}
+
+El valor de $f_n$ es
+$$f_n=\cfrac{1+(-1)^n}{2}.$$
+
+Para los valores pares, esto es 
+$$f_{2n}=\cfrac{1+(-1)^{2n}}{2}=\cfrac{1+1}{2}=1.$$
+Para los valores impares, esto es 
+$$f_{2n+1}=\cfrac{1+(-1)^{2n+1}}{2}=\cfrac{1-1}{2}=0.$$
+
+Por lo tanto, podemos escribir $F(z)$ de la siguiente forma
+\begin{align*}
+F(z)&=\sum_{n\geq0}{\cfrac{1+(-1)^n}{2}\cdot\ek{n}}
+\end{align*}
+
+A partir de esto:
+\begin{align*}
+F(z)&=\sum_{n\geq0}{\cfrac{1+(-1)^n}{2}\cdot\ek{n}}=\cfrac{1}{2}\cdot\left(\underbset{e^z}{\sum_{n\geq0}{1\cdot\ek{n}}}+\underbset{e^{-z}}{\sum_{n\geq0}{(-1)^n\cdot\ek{n}}}\right)\\
+F(z)&=\cfrac{e^z+e^{-z}}{2}.
+\end{align*}
+
+\subsection{Otra posible solución}
+\begin{align*}
+e^z&\rightarrow \langle+1,+1,+1,+1,+1,+1,\dots,+1,+1\,\dots\rangle\\
+e^{-z}
+	&\rightarrow \langle+1,-1,+1,-1,+1,-1,\dots,+1,-1\,\dots\rangle\\
+e^z+e^{-z}&\rightarrow\langle+2,\cc0,+2,\cc0,+2,\cc0,\dots,+2,\cc0\,\dots\rangle\\
+\cfrac{e^z+e^{-z}}{2}&\rightarrow\langle+1,\cc0,+1,\cc0,+1,\cc0,\dots,+1,\cc0\,\dots\rangle\\
+\end{align*}
+
+\subsection{Ejemplo 2}
+
+Hallar la EGF de $\se{n}{n\geq0,\,n\bmod2=0}$.
+
+Esta secuencia la podemos reescribir. Y resulta lo siguiente:
+$$\se{n\cdot\cfrac{1+(-1)^n}{2}}{n\geq0}$$
+
+\begin{align*}
+F(z)&=\sum_{n\geq0}{n\cdot\cfrac{1+(-1)^n}{2}\cdot\ek{n}}&=\cfrac{1}{2}\cdot\left(\underbset{z\cdot e^z}{\sum_{n\geq0}{n\cdot\ek{n}}}+\underbset{A(z)}{\sum_{n\geq0}{n\cdot(-1)^n\cdot\ek{n}}}\right)
+\end{align*}
+
+\textbf{Es necesario mostar cómo se halló quién es $A(z).$}
+\begin{align*}
+A(z)={\sum_{n\geq0}{n\cdot(-1)^n\cdot\ek{n}}}
+\end{align*}
+Sabemos que 
+\begin{align*}
+e^{-z}&=\sum_{n\geq0}{(-1)^n\cdot\ek{n}}\\
+z\cdot e^{-z}&=\sum_{n\geq0}{n\cdot (-1)^{n-1}\cdot\ek{n}}\\
+-z\cdot e^{-z}&=\underbset{A(z)}{\sum_{n\geq0}{n\cdot (-1)^{n}\cdot\ek{n}}}.
+\end{align*}
+
+Dado que ya tenemos $A(z)$, entonces
+\begin{align*}
+F(z)&=\cfrac{z\cdot e^z-z\cdot  e^{-z}}{2}.
+\end{align*}
+
+\subsection{Ejemplo 3}
+
+Dada la siguiente EGF
+$$F(z)=\cfrac{e^{3z}-e^{2z}}{z},$$ hallar $n![z^n]F(z)$.
+
+\subsubsection*{Solución}
+\begin{align*}
+F(z)&=\cfrac{e^{3z}-e^{2z}}{z}=\cfrac{e^{2z}\cdot(e^z-1)}{z}\\
+F(z)&=e^{2z}\cdot \cfrac{e^z-1}{z}.
+\end{align*}
+De las EGFs básicas sabemos lo siguiente
+\begin{align*}
+e^{2z}&=\sum_{n\geq0}{2^n\cdot\ek{n}}\\
+\cfrac{e^z-1}{z}&=\sum_{n\geq0}{\cfrac{1}{n+1}\cdot\ek{n}}
+\end{align*}
+
+Aplicando la operación de convolución binomial se obtiene:
+\begin{align*}
+e^{2z}\cdot \cfrac{e^z-1}{z}&=\sum_{n\geq0}{\sum_{0\leq k\leq n}{\binom{n}{k}\cdot 2^k\cdot \cfrac{1}{n-k+1}\cdot\ek{n}}}
+\end{align*}
+
+En este caso, dejaremos esta expresión abierta como resultado. Por lo tanto
+\begin{align*}
+f_n&=\sum_{0\leq k\leq n}{\binom{n}{k}\cdot 2^k\cdot \cfrac{1}{n-k+1}}.
+\end{align*}
