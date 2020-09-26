@@ -1,0 +1,123 @@
+\section{Sumatorias}
+
+\subsection{Ejemplo 1}
+
+Hallar la EGF de
+$$\se{\sum_{0\leq k\leq n}{1}}{n\geq0}$$
+
+\begin{align*}
+\sum_{0\leq k\leq n}{1}&=\underbset{n+1\text{ veces}}{1+1+\cdots+1}=n+1,\\
+\sum_{1\leq k\leq n}{1}&=\underbset{n\text{ veces}}{1+1+\cdots+1}=n,\\
+\sum_{0\leq k\leq n}{k}&=\sum_{1\leq k\leq n}{k}=\binom{n+1}{2}=\cfrac{1}{2}\cdot n\cdot(n+1).
+\end{align*}
+
+\subsection{Ejemplo 2}
+Hallar la EGF de
+$$\se{\sum_{0\leq k\leq n}{\binom{n}{k}a^k}}{n\geq0}$$
+
+\paragraph{Solución}
+Definimos $H(z)$ como la EGF de la secuencia.
+\begin{align*}
+H(z)=\sum_{n\geq0}{\sum_{0\leq k\leq n}{\binom{n}{k}a^k}\cdot\ek{n}}.
+\end{align*}
+
+Aquí usaremos la suma binomial. En este caso
+\begin{align*}
+f_k&=a^k\rightarrow f_n=a^n.\\
+g_{n-k}&=1\rightarrow g_n=1.
+\end{align*}
+
+Dados $f_n$ y $g_n$, entonces sus EGFs son:
+\begin{align*}
+F(z)&=e^{az}.\\
+G(z)&=e^z.
+\end{align*}
+
+Dado que $H(z)$ resulta de la convolución binomial de $F(z)$ y $G(z)$, entonces $H(z)=F(z)\cdot G(z)$.
+Es decir
+$$H(z)=e^{az}\cdot e^z=e^{(a+1)\cdot z}.$$
+
+Para $H(z)$ se cumple que
+$$n![z^n]H(z)=(a+1)^n.$$
+
+Es decir
+\begin{align*}
+\sum_{0\leq k\leq n}{\binom{n}{k}a^k}=(a+1)^n.
+\end{align*}
+
+\subsection{Ejemplo 3}
+
+\begin{align*}
+f_n=3^n.
+\end{align*}
+Y dado que $F(z)$ es su EGF, sabemos que $F(z)=e^{3z}$.
+
+Entonces, aplicando la multiplicación por el índice varias veces, tenemos:
+\begin{align*}
+e^{3z}&=\sum_{n\geq0}{3^n\cdot\ek{n}}\\
+ze^{3z}&=\sum_{n\geq0}{n\cdot 3^{n-1}\cdot\ek{n}}\\
+z^2e^{3z}&=\sum_{n\geq0}{n\cdot (n-1)\cdot3^{n-2}\cdot\ek{n}}\\
+\end{align*}
+
+\subsection{Ejemplo 4}
+
+Hallar la EGF de
+\begin{align*}
+\se{\sum_{0\leq k\leq n}{\binom{n}{k}\cdot a^{n}}}{n\geq0}
+\end{align*}
+
+\paragraph{Solución}
+\begin{align*}
+\sum_{0\leq k\leq n}{\binom{n}{k}\cdot a^{n}}=\sum_{0\leq k\leq n}{\binom{n}{k}\cdot a^{k}\cdot a^{n-k}}
+\end{align*}
+
+Definimos $F(z)$ como la EGF de la secuencia.
+\begin{align*}
+F(z)&=\sum_{n\geq0}{\sum_{0\leq k\leq n}{\binom{n}{k}\cdot a^{n}}\cdot\ek{n}}\\
+&=\sum_{n\geq0}{\sum_{0\leq k\leq n}{\binom{n}{k}\cdot a^{k}\cdot a^{n-k}}\cdot\ek{n}}\\
+&=\left(\sum_{n\geq0}a^n\cdot\ek{n}\right)\left(\sum_{n\geq0}a^n\cdot\ek{n}\right)=\left(\sum_{n\geq0}a^n\cdot\ek{n}\right)^2\\
+F(z)&=(e^{a\cdot z})^2=e^{2\cdot a\cdot z}.
+\end{align*}
+
+De esto, se concluye que $$n![z^n]F(z)=(2\cdot a)^n.$$
+
+\subsection{Ejemplo 5}
+
+Hallar la EGF de
+\begin{align*}
+\se{\sum_{0\leq k\leq n}{\binom{n}{k}\cdot a^{n}}}{n\geq0}
+\end{align*}
+
+\paragraph{Solución}
+
+Definimos $F(z)$ como la EGF de la secuencia.
+\begin{align*}
+F(z)&=\sum_{n\geq0}{\sum_{0\leq k\leq n}{\binom{n}{k}\cdot a^{n}}\cdot\ek{n}}\\
+&=\sum_{n\geq0}{\left(a^n\cdot \sum_{0\leq k\leq n}{\binom{n}{k}}\cdot\ek{n}\right)}=\sum_{n\geq0}{a^n\cdot 2^n\cdot \ek{n}}\\
+&=\sum_{n\geq0}{(2\cdot a)^n\cdot\ek{n}}\\
+F(z)&=e^{2\cdot a\cdot z}.
+\end{align*}
+
+\clearpage
+\subsection*{Extra}
+\begin{align*}
+	F(z)&=F\left(\frac{z}{1+z}\right)\\
+	\sum_{n\geq0}{f_n\cdot \ek{n}}&=\sum_{n\geq0}{f_n\cdot\cfrac{1}{n!}\cdot\left(\cfrac{z}{1+z}\right)^n}\\
+	&=\sum_{n\geq0}{f_n\cdot\left(\cfrac{1}{1+z}\right)^n\cdot\ek{n}}\\
+	&=\sum_{n\geq0}{f_n\cdot\left(1+z\right)^{-n}\cdot\ek{n}}\\
+	&=\sum_{n\geq0}{f_n\cdot\left(\sum_{k\geq0}{\binom{-n}{k}\cdot}z^k\right)\cdot\ek{n}.}
+\end{align*}
+\paragraph{Nota:} Este coeficiente binomial corresponde a los usados en la generalización del teorema del bionomio de Newton.
+\begin{align*}
+\binom{n}{k}=\cfrac{n\cdot(n-1)\cdots(n-k+1)}{k!}.
+\end{align*}
+
+\subsection*{Otro ejemplo}
+
+\begin{align*}
+e^z&=\sum_{n\geq0}{\ek{n}}.
+\end{align*}
+Entonces
+\begin{align*}
+e^{z^2}&=\sum_{n\geq0}{\cfrac{{z^2}^n}{n!}}.
+\end{align*}
