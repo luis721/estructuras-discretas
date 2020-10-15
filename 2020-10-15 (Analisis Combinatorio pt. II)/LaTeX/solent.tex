@@ -1,0 +1,16 @@
+\section{Soluciones Enteras}
+
+\subsection{Ejemplo 1}
+% --
+\paragraph{Problema}
+$$x1+x2+x3=n,\quad x1\geq 1,\,x2\geq1,\,x3\geq1$$
+% --
+Este problema, se puede plantear, en principio, de la siguiente manera
+\begin{align*}
+f_n&=\sum_{\underset{x1,x2,x3\geq1}{x1+x2+x3=n}}{1}
+\end{align*}
+% --
+\paragraph{Solución}
+\begin{align*}
+f_n&=\left[\binom{3}{3}\binom{3}{3}\right]\cdot\left[\binom{n-3}{n-3}\cdot\binom{3+(n-3)-1}{n-3}\right]
+\end{align*}

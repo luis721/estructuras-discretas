@@ -1,0 +1,217 @@
+\section{Cadenas}
+
+\paragraph{Para los siguientes ejercicios, considere las letras \textit{ABCDEF}, para cadenas sin repetición.}
+
+\subsection{Ejemplo 1}
+
+Cadenas de longitud 6 que contengan la subcadena \textit{AB}.
+
+\textit{Solución directa}
+
+\textbf{Palomar}
+% -----------------
+\begin{equation*}
+	\palomar AB \palomar
+\end{equation*}
+
+\textbf{Fórmula}
+
+\begin{enumerate}
+\item Primero escogemos $A$ y $B$ y las ubicamos en un palomar.
+$$\left[\binom{2}{2}\cdot\binom{1}{1}\right]$$
+\item Escogemos las letras restantes ($C$, $D$, $E$ y $F)$ y las distribuimos en los palomares. Adicionalmente, debemos permutarlas.
+% --
+\begin{align*}
+	\left[\underbset{\text{Seleccionar}}{\binom{6-2}{6-2}}\cdot\underbset{\text{Distribuir}}{\binom{2+(6-2)-1}{6-2}}\cdot\underbset{\text{Permutar}}{\binom{6-2}{1,1,1,1}}\right]
+\end{align*}
+\item Finalmente, juntamos el resultado de cada paso.
+\begin{equation*}
+\fn=\left[\binom{2}{2}\cdot\binom{1}{1}\right]
+\cdot
+\left[\binom{6-2}{6-2}\cdot\binom{2+(6-2)-1}{6-2}\cdot\binom{6-2}{1,1,1,1}\right]
+\end{equation*}
+\end{enumerate}
+% --
+\subsection{Ejemplo 2}
+
+Cadenas de longitud 6 que contengan la subcadena \textit{AB}.
+
+\textit{Solución por complemento.}
+
+\textbf{Palomar}
+% -----------------
+\begin{equation*}
+\left\{ \palomar \right\} - [\text{cadenas que NO contengan la subcadena AB}]
+\end{equation*}
+
+Esto es:
+\begin{equation*}
+\left\{ \palomar \right\} - \left(\left\{\palomar B \palomar A \palomar\right\} +\left\{\palomar A \comodin B \palomar\right\} \right)
+\end{equation*}
+
+
+\textbf{Fórmula}
+
+\begin{enumerate}
+	\item
+	Primero generamos \textbf{todas} las posibles cadenas. Esto corresponde a $\left\{ \palomar \right\}$.
+	\begin{align*}
+	\left[\binom{6}{6}\cdot\binom{1+6-1}{6}\cdot\binom{6}{1,1,1,1,1,1}\right]
+	\end{align*}
+	
+	\item Lo siguiente es generar todas las cadenas que tienen a la $B$ antes de la $A$.
+	Esto corresponde a $\left\{\palomar B \palomar A \palomar\right\}$.
+	% --
+	\begin{align*}
+	\left[\binom{2}{2}\cdot\binom{2}{2}\right]\cdot\left[\binom{6-2}{6-2}\cdot\binom{3+(6-2)-1}{6-2}\cdot\binom{6-2}{1,1,1,1}\right]
+	\end{align*}
+	
+	\item Por último, generamos las cadenas que tienen a la $A$ antes de la $B$, pero sin que estén juntas. Esto corresponde a $\left\{\palomar A \comodin B \palomar\right\}$.
+	\begin{align*}
+	\left[\binom{2}{2}\cdot\binom{2}{2}\right]\cdot\left[\binom{6-2}{1}\binom{1}{1}\right]\cdot\left[\binom{6-3}{6-3}\cdot\binom{3+(6-3)-1}{3}\cdot\binom{6-3}{1,1,1}\right]
+	\end{align*}
+	% 
+	\begin{align*}
+	\fn&=\left[\binom{6}{6}\cdot\binom{1+6-1}{6}\cdot\binom{6}{1,1,1,1,1,1}\right]\\
+	&-\left[\binom{2}{2}\cdot\binom{2}{2}\right]\cdot\left[\binom{6-2}{6-2}\cdot\binom{3+(6-2)-1}{6-2}\cdot\binom{6-2}{1,1,1,1}\right]\\
+	&-\left[\binom{2}{2}\cdot\binom{2}{2}\right]\cdot\left[\binom{6-2}{1}\binom{1}{1}\right]\cdot\left[\binom{6-3}{6-3}\cdot\binom{3+(6-3)-1}{3}\cdot\binom{6-3}{1,1,1}\right]
+	\end{align*}
+\end{enumerate}
+% --
+
+\subsection{Ejemplo 3}
+Cadenas de longitud 6 que contengan las letras $A$ y $B$ juntas.
+
+\paragraph{Palomar}
+\textit{Solución directa.}
+A diferencia del primer ejemplo, en este caso no importa el orden en que vayan $A$ y $B$, sino que solo importa que estén juntas. Es decir, tanto la subcadena $AB$ como $BA$ son válidas.
+% -----------------
+\begin{equation*}
+\palomar {\color{magenta} AB} \palomar
+\end{equation*}
+
+\textbf{Nota:} \textit{El color magenta indica que estas se permutan.}
+
+\paragraph{Fórmula}
+
+\begin{enumerate}
+	\item Primero escogemos $A$ y $B$, las ubicamos en un palomar {\color{magenta} y las permutamos}.
+	$$\left[\binom{2}{2}\cdot\binom{1}{1}\cdot\binom{2}{1,1}\right]$$
+	\item Escogemos las letras restantes ($C$, $D$, $E$ y $F)$ y las distribuimos en los palomares. Adicionalmente, debemos permutarlas.
+	% --
+	\begin{align*}
+	\left[\underbset{\text{Seleccionar}}{\binom{6-2}{6-2}}\cdot\underbset{\text{Distribuir}}{\binom{2+(6-2)-1}{6-2}}\cdot\underbset{\text{Permutar}}{\binom{6-2}{1,1,1,1}}\right]
+	\end{align*}
+	\item Finalmente, juntamos el resultado de cada paso.
+	\begin{equation*}
+	\fn=\left[\binom{2}{2}\cdot\binom{1}{1}\cdot\binom{2}{1,1}\right]
+	\cdot
+	\left[\binom{6-2}{6-2}\cdot\binom{2+(6-2)-1}{6-2}\cdot\binom{6-2}{1,1,1,1}\right]
+	\end{equation*}
+\end{enumerate}
+% ---------
+\subsection{Ejemplo 4}
+Cadenas de longitud 6 que contengan las letras $A$ y $B$ juntas.
+
+\paragraph{Palomar}
+\textit{Solución por complemento.}
+
+Al conjunto de todas las posibles cadenas, le quitaremos las cadenas que tengan la $A$ y la $B$ separadas.
+\begin{align*}
+\left\{\palomar\right\}-\left\{\text{Cadenas que tengan $A$ y $B$ separadas}\right\}
+\end{align*}
+Esto es
+\begin{align*}
+\left\{\palomar\right\}-\left\{\palomar \cmag{A} \comodin \cmag{B} \palomar \right\}
+\end{align*}
+\paragraph{Fórmula}
+\begin{enumerate}
+\item Primero generamos \textbf{todas} las posibles cadenas. Esto corresponde a $\left\{ \palomar \right\}$.
+\begin{align*}
+\left[\binom{6}{6}\cdot\binom{1+6-1}{6}\cdot\binom{6}{1,1,1,1,1,1}\right]
+\end{align*}
+\item Lo siguiente es contar las cadenas que no tengan $A$ y $B$ juntas.
+\begin{align*}
+\left[\binom{2}{2}\cdot\binom{2}{2}\cdot \binom{2}{1,1}\right]\cdot\left[\binom{6-2}{1}\cdot\binom{1}{1}\right]\cdot\left[\binom{6-3}{6-3}\cdot\binom{3+(6-3)-1}{6-3}\cdot\binom{6-3}{1,1,1}\right]
+\end{align*}
+\end{enumerate}
+
+Finalmente:
+\begin{align*}
+\fn&=\left[\binom{6}{6}\cdot\binom{1+6-1}{6}\cdot\binom{6}{1,1,1,1,1,1}\right]\\
+&-\left[\binom{2}{2}\cdot\binom{2}{2}\cdot \binom{2}{1,1}\right]\cdot\left[\binom{6-2}{1}\cdot\binom{1}{1}\right]\cdot\left[\binom{6-3}{6-3}\cdot\binom{3+(6-3)-1}{6-3}\cdot\binom{6-3}{1,1,1}\right]
+\end{align*}
+
+\subsection{Ejemplo 5}
+Cadenas de longitud 6 tal que la $D$ y la $E$ no estén juntas.
+
+
+\paragraph{Palomar}
+\textit{Solución Directa}
+
+Ubicamos un palomar \textbf{no vacío} entre $D$ y $E$. Además, es importante tener en cuenta que no importa en qué orden estén las dos letras, es decir, puede ir tanto la $D$ antes de la $E$ o la $D$ antes de la $E$, por lo que debemos permutarlas.
+
+% -----------------
+\begin{equation*}
+\palomar \cmag{D} \comodin  \cmag{E} \palomar
+\end{equation*}
+
+\paragraph{Fórmula}
+\begin{enumerate}
+\item Primero seleccionamos $D$ y $E$ y las permutamos.
+\begin{align*}
+\left[\binom{2}{2}\cdot\binom{2}{2}\cdot\binom{2}{1,1}\right]
+\end{align*}
+\item Ahora debemos asegurarnos de que en el comodín vaya al menos una letra. Por lo que escogemos una cualquiera de las letras restantes.
+\begin{align*}
+\left[\binom{6-2}{1}\cdot\binom{1}{1}\right]
+\end{align*}
+\item Por último, seleccionamos las ahora restantes y las distribuimos en los tres palomares y las permutamos.
+\begin{align*}
+\left[\binom{6-3}{6-3}\cdot\binom{3+(6-3)-1}{6-3}\cdot\binom{6-3}{1,1,1}\right]
+\end{align*}
+\end{enumerate}
+Por lo tanto, la respuesta final es
+\begin{align*}
+\fn=\left[\binom{2}{2}\cdot\binom{2}{2}\cdot\binom{2}{1,1}\right]\cdot\left[\binom{6-2}{1}\cdot\binom{1}{1}\right]\cdot\left[\binom{6-3}{6-3}\cdot\binom{3+(6-3)-1}{6-3}\cdot\binom{6-3}{1,1,1}\right]
+\end{align*}
+
+% --
+\subsection{Ejemplo 6}
+Cadenas de longitud 6 tal que la $D$ y la $E$ no estén juntas.
+
+
+\paragraph{Palomar}
+\textit{Solución por Complemento}
+
+Esta cantidad se puede definir como el total de palabras posibles menos las palabras que tienen a $D$ y $E$ juntas.
+\begin{align*}
+\left\{\palomar\right\}-\left\{\text{Cadenas que tienen a $D$ y $E$ juntas} \right\}
+\end{align*}
+Esto es
+\begin{align*}
+\left\{\palomar\right\}-\left\{\palomar {\color{magenta} DE} \palomar\right\}
+\end{align*}
+
+\paragraph{Fórmula}
+\begin{enumerate}
+\item Lo primero es definir el gran total:
+\begin{align*}
+\left[\binom{6}{6}\cdot\binom{1+6-1}{6}\cdot\binom{6}{1,1,1,1,1,1}\right]
+\end{align*}
+\item Recordemos que la cantidad de palabras a partir las letras definidas que se pueden formar de tal modo que $D$ y $E$ estén juntas es (equivalente a cuando $A$ y $B$ están juntas).
+\begin{align*}
+\left[\binom{2}{2}\cdot\binom{1}{1}\cdot\binom{2}{1,1}\right]
+\cdot
+\left[\binom{6-2}{6-2}\cdot\binom{2+(6-2)-1}{6-2}\cdot\binom{6-2}{1,1,1,1}\right]
+\end{align*}
+\end{enumerate}
+
+\begin{align*}
+\fn&=\left[\binom{6}{6}\cdot\binom{1+6-1}{6}\cdot\binom{6}{1,1,1,1,1,1}\right]\\&-
+\left[\binom{2}{2}\cdot\binom{1}{1}\cdot\binom{2}{1,1}\right]
+\cdot
+\left[\binom{6-2}{6-2}\cdot\binom{2+(6-2)-1}{6-2}\cdot\binom{6-2}{1,1,1,1}\right]
+\end{align*}
+
+
