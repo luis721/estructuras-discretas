@@ -1,0 +1,175 @@
+\section*{Cadenas}
+
+\subsection*{Ejemplo 1}
+
+¿Cuantas subcadenas de longitud 4 pueden formarse con los caracteres de la cadena MISSISSIPPI?
+
+\paragraph{Solución}
+
+\begin{enumerate}
+\item Primero definimos $n=11$. 
+
+\item Posterior a esto, debemos definir el número de categorías, $c=4$.
+
+\item Después de definir $n$ y $c$, determinamos la cantidad de categoría.
+% --
+\begin{align*}
+n_1&=n_2=4; (I, S)\\
+n_3&=2; (P)\\
+n_4&=1; (M)
+\end{align*}
+
+\item Lo siguiente es escribir las particiones válidas para $m=4$. Este valor $m$ corresponde a la longitud de las cadenas que se nos pide contar.
+
+Entonces:
+\begin{table}[ht!]	\centering
+	\begin{tabular}{c c c c}
+		4 & \\
+		3 & 1 \\
+		2 & 2 \\
+		2 & 1 & 1 \\
+		1 & 1 & 1 & 1
+	\end{tabular}
+\end{table}
+En este caso, todas las particiones son válidas.
+\item Finalmente, procedemos a contar.
+\begin{itemize}
+
+\item Para \textbf{4}:
+\textit{IIII}
+\begin{align*}
+n(\Se_1)&=\left[\binom{2}{1}\cdot\binom{4}{4}\right]
+\end{align*}
+Esto es: Hay dos categorías que tienen por lo menos 4 elementos. Escogemos una de esas categorías y ubicamos 4 elementos de esta. No es necesario permutar porque los 4 elementos son idénticos.
+
+\item Para \textbf{3 1}: \textit{IIIM}
+
+\begin{align*}
+n(\Se_2)&=\underbset{3}{\left[\binom{2}{1}\cdot\binom{3}{3}\right]}\cdot\underbset{1}{\left[\binom{4-1}{1}\cdot\binom{1}{1}\right]}\cdot\underbset{\text{Permutar}}{\binom{4}{3,1}}
+\end{align*}
+
+\item Para \textbf{2 2}:
+\textit{IIPP}
+\begin{align*}
+n(\Se_3)&=\left[\binom{3}{2}\binom{2}{2}\right]\cdot\binom{4}{2,2}
+\end{align*}
+
+\item Para \textbf{2 1 1}:
+\textit{IIMP}
+\begin{align*}
+n(\Se_4)&=\underbset{\text{2}}{\left[\binom{3}{1}\binom{2}{2}\right]}\cdot\underbset{\text{1 1}}{\left[\binom{4-1}{2}\binom{1}{1}\right]}\cdot\binom{4}{2,1,1}
+\end{align*}
+\item Para \textbf{1 1 1 1}:
+\textit{IMPS}
+\begin{align*}
+n(\Se_5)&=\left[\binom{4}{4}\binom{1}{1}\right]\cdot\binom{4}{1,1,1,1}
+\end{align*}
+\end{itemize}
+\item Finalmente, sumamos todos estos elementos, y obtenemos:
+\begin{align*}
+n(\Se)&=n(\Se_1)+n(\Se_2)+n(\Se_3)+n(\Se_4)+n(\Se_5)
+\end{align*}
+\end{enumerate}
+
+\subsection*{Ejemplo 2}
+¿Cuántas cadenas de longitud 4 pueden formarse con los caracteres de la cadena PARALELEPIPEDO?
+
+\begin{enumerate}
+\item $n=14$.
+\item $c=8$.
+\item Eelementos de cada categoría: \begin{align*}
+n_1&=n_2=3; (E, P)\\
+n_3&=n_4=2; (A, L)\\
+n_5&=n_6=n_7=n_8=1; (D, I, O,R)
+\end{align*}
+\item Particiones:
+\begin{table}[!ht]
+\centering
+\begin{tabular}{c c c c }
+3 & 1\\
+2 & 2\\
+2 & 1 & 1\\
+1 & 1 & 1 & 1
+\end{tabular}
+\end{table}
+\item 
+\begin{itemize}
+\item Para \textbf{3 1}:
+\textit{EEEA}
+\begin{align*}
+n(\Se_{3,1})&=\left[\binom{2}{1}\cdot\binom{3}{3}\right]\cdot\left[\binom{8-1}{1}\cdot\binom{1}{1}\right]\cdot\binom{4}{3,1}
+\end{align*}
+
+\item Para \textbf{2 2}:
+\textit{AAEE}
+\begin{align*}
+n(\Se_{2,2})&=\left[\binom{4}{2}\cdot\binom{2}{2}\right]\cdot\binom{4}{2,2}
+\end{align*}
+\item Para \textbf{2 1 1}:
+\textit{AADE}
+\begin{align*}
+n(\Se_{2,1,1})&=\left[\binom{4}{1}\cdot\binom{2}{2}\right]\cdot\left[\binom{8-1}{2}\binom{1}{1}\right]\cdot\binom{4}{2,1,1}
+\end{align*}
+\item Para \textbf{1 1 1 1}:
+\textit{ADEI}
+\begin{align*}
+n(\Se_{1,1,1,1})&=\left[\binom{8}{4}\cdot\binom{1}{1}\right]\cdot\binom{4}{1,1,1,1}
+\end{align*}
+\end{itemize}
+\item Finalmente:
+\begin{align*}
+n(\Se)&=n(\Se_{3,1})+n(\Se_{2,2})+n(\Se_{2,1,1})+n(\Se_{1,1,1,1})
+\end{align*}
+\end{enumerate}
+
+\subsection*{Ejemplo 3}
+¿Cuántas cadenas de longitud 5 pueden formarse con los caracteres de la cadena PARALELEPIPEDO?
+
+\begin{enumerate}
+\item $n=14$.
+\item $c=8$.
+\item Eelementos de cada categoría: 
+\begin{align*}
+	n_1&=n_2=3; (E, P)\\
+	n_3&=n_4=2; (A, L)\\
+	n_5&=n_6=n_7=n_8=1; (D, I, O,R)
+	\end{align*}
+\item Particiones:
+\begin{table}[ht!]
+	\centering
+	\begin{tabular}{c c c c c}
+		3 & 2\\
+		3 & 1 & 1\\
+		2 & 2 & 1\\
+		2 & 1 & 1 & 1\\
+		1 & 1 & 1 & 1 & 1
+	\end{tabular}
+\end{table}
+\item Conteo para cada partición
+\begin{itemize}
+\item Para \textbf{3 2}:
+\begin{align*}
+n(\Se_1)&=\left[\binom{2}{1}\cdot\binom{3}{3}\right]\cdot\left[\binom{4-1}{1}\cdot\binom{2}{2}\right]\cdot\binom{5}{3,2}
+\end{align*}
+\item Para \textbf{3 1 1}:
+\begin{align*}
+n(\Se_2)&=\left[\binom{2}{1}\cdot\binom{3}{3}\right]\cdot\left[\binom{8-1}{2}\cdot\binom{1}{1}\right]\cdot\binom{5}{3,1,1}
+\end{align*}
+\item Para \textbf{2 2 1}:
+\begin{align*}
+n(\Se_3)&=\underbset{2, 2}{\left[\binom{4}{2}\cdot\binom{2}{2}\right]}\cdot\underbset{1}{\left[\binom{8-2}{1}\cdot\binom{1}{1}\right]}\cdot\binom{5}{2,2,1}
+\end{align*}
+\item Para \textbf{2 1 1 1}:
+\begin{align*}
+n(\Se_4)&=\underbset{2, 2}{\left[\binom{4}{1}\cdot\binom{2}{2}\right]}\cdot\underbset{1}{\left[\binom{8-1}{3}\cdot\binom{1}{1}\right]}\cdot\binom{5}{2,1,1,1}
+\end{align*}
+\item Para \textbf{1 1 1 1 1}
+\begin{align*}
+n(\Se_5)&=\underbset{1,1,1,1,1}{\left[\binom{8}{5}\cdot\binom{1}{1}\right]}\cdot\binom{5}{1,1,1,1,1}
+\end{align*}
+\end{itemize}
+\item Finalmente:
+\begin{align*}
+n(\Se)&=n(\Se_1)+n(\Se_2)+n(\Se_3)+n(\Se_4)+n(\Se_5)
+\end{align*}
+\end{enumerate}

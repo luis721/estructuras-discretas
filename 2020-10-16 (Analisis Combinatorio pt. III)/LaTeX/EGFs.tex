@@ -1,0 +1,98 @@
+\section*{Proyecto Computacional}
+
+\subsection*{Ejemplo 1}
+¿Cuántas cadenas binarias hay tal que el número 1 no aparece exactamente 2 o 3 veces?
+
+\paragraph{Solución}
+
+\begin{align*}
+F(z)&=\underbset{\text{Ceros}}{\left(\sum_{n\geq0}{\ek{n}}\right)}\cdot \underbset{\text{Unos}}{\left(\sum_{\underset{n\not=2,\,n\not=3}{n\geq0}}{\ek{n}}\right)}
+\end{align*}
+
+A partir de la tabla EGFs, tenemos:
+\begin{align*}
+F(z)&=e^z\cdot\left(e^z-z^2/2-z^3/6\right)\\
+&=e^{2z}-\cfrac{z^2e^z}{2}-\cfrac{z^3e^z}{6}
+\end{align*}
+
+De aquí, tenemos que:
+\begin{align*}
+f_n&=2^n-\binom{n}{2}-\binom{n}{3}
+\end{align*}
+
+
+\subsection*{Ejemplo 2}
+¿Cuántas cadenas binarias hay tal que el número 1 no aparece exactamente 1 vez y el número 0 aparece por lo menos una vez?
+
+\paragraph{Solución}
+
+\begin{align*}
+F(z)&=\underbset{\text{Ceros}}{\left(\sum_{\underset{n\not=0}{n\geq0}}{\ek{n}}\right)}\cdot \underbset{\text{Unos}}{\left(\sum_{\underset{n\not=1}{n\geq0}}{\ek{n}}\right)}
+\end{align*}
+
+A partir de la tabla EGFs, tenemos:
+\begin{align*}
+F(z)&=\left(e^z-1\right)\cdot\left(e^z-z\right)\\
+&=e^{2z}-ze^{z}-e^z+\cmag{z}
+\end{align*}
+
+De aquí, tenemos que:
+\begin{align*}
+f_n&=2^n-n-1
+\end{align*}
+
+{\color{red} Esta respuesta NO es complementamente correcta.}
+
+Recordemos que dado $f_n$, el $n$-ésimo término de su EGF es $f_n\cdot \cfrac{z^n}{n!}$.
+
+Entonces, $z$ corresponde a un $f_1$ (es decir, $\frac{z^1}{1!}$).
+
+De $f_n$ tenemos que $f_1=0$, sin embargo, esto no es correcto.
+
+Entonces, dado que $n![z^1]z=1$, entonces
+$f_n=0+1=1$.
+
+Por lo tanto:
+\begin{align*}
+f_n&=\begin{cases}
+2^n-n-1,\quad n\not=1,\\
+1,\quad n=1
+\end{cases}
+\end{align*}
+
+\subsection*{Ejemplo 3}
+Dado $F(z)=e^{4z}-8z^2-1$
+hallar $f_n$.
+
+Para mayor claridad, esto es:
+\begin{align*}
+F(z)&=e^{4z}-16\cdot \cfrac{z^2}{2!}-1\cdot\ek{0}
+&=\left(\sum_{n\geq0}{4^n\cdot\ek{n}}\right)-16\cdot \cfrac{z^2}{2!}-1\cdot\ek{0}
+\end{align*}
+
+Inicialmente, podríamos escribir
+\begin{align*}
+f_n&=4^n.
+\end{align*}
+Sin embargo, esta respuesta NO es correcta.
+
+De $F(z)$ sabemos que:
+\begin{align*}
+f_0&=4^0-0-1=1-1=0
+\end{align*}
+Por otro lado,
+\begin{align*}
+f_2&=4^2-16-0=16-16=0
+\end{align*}
+Finalmente, la respuesta correcta es
+\begin{align*}
+f_n&=\begin{cases}
+4^n,\quad n\not=0, n\not=2,\\
+0,\quad n=0,2
+\end{cases}
+\end{align*}
+
+\subsection*{Otro}
+\begin{align*}
+F(z)&=\sum_{\underset{n\bmod2=0}{n\geq4}}{\ek{n}}=\cfrac{e^z+e^{-z}}{2}-\ek{2}-\ek{0}
+\end{align*}
