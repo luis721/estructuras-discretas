@@ -1,0 +1,124 @@
+\section*{Soluciones Enteras}
+
+\subsection*{Ejemplo 1}
+
+¿Cuántos números entre 1 y 1.000.000 tienen la suma de sus dígitos igual a 15?
+
+\paragraph{Solución:} Inicialmente, se excluye a 1.000.000, dado que sus dígitos no alcanza a sumar 15 y además, así reduce el problema a contar los número de entre 1 y 6 dígitos cuya suma sea igual a 15.
+\begin{align*}
+x_1 + x_2 + x_3 + x_4 + x_5 + x_6&= 15\\
+\textit{sujeto a:}\quad& 0\leq x_i \leq 9,\quad i=1,2,...,5
+\end{align*}
+% --
+\begin{enumerate}
+\item Primero calculamos todas las posibles (sin restricciones)
+\begin{align*}
+	\npalomar{x_1}
+	\npalomar{x_2}
+	\npalomar{x_3}
+	\npalomar{x_4}
+	\npalomar{x_5}
+	\npalomar{x_6}
+\end{align*}
+
+\begin{equation*}
+\left[\binom{15}{15}\binom{6+15-1}{15}\right]
+\end{equation*}
+
+\item Quitar las opciones que no cumplen con las restricciones. Es decir, todas las opciones en las que por lo menos un dígito tiene más de 9.
+% --
+\begin{align*}
+\npalomas{x_1}{10}
+\npalomar{x_2}
+\npalomar{x_3}
+\npalomar{x_4}
+\npalomar{x_5}
+\npalomar{x_6}
+\end{align*}
+% --
+\begin{align*}
+\left[\binom{10}{10}\cdot\binom{6}{1}\right]\cdot\left[\binom{15-10}{15-10}\binom{6+(15-10)-1}{15-10}\right]
+\end{align*}
+\end{enumerate}
+Finalmente, la respuesta es
+\begin{equation*}
+n(\Se)=\left[\binom{15}{15}\binom{6+15-1}{15}\right]-\left[\binom{10}{10}\cdot\binom{6}{1}\right]\cdot\left[\binom{15-10}{15-10}\binom{6+(15-10)-1}{15-10}\right]
+\end{equation*}
+
+\subsection*{Ejemplo 2}
+
+$$x1+x2+x3+x4=17.$$
+Sujeto a $$x1\geq0,\,x2\geq1,\,x3\geq2,\,x4\geq3$$
+
+\paragraph{Solución} Primero planteamos el problema con palomares
+\textbf{Planteamiento:}
+\begin{align*}
+\npalomar{x_1}
+\npalomas{x_2}{1}
+\npalomas{x_3}{2}
+\npalomas{x_4}{3}
+\end{align*}
+% --
+\textbf{Fórmula:}
+\begin{align*}
+\underbset{x_2\geq1}{\left[\binom{1}{1}\binom{1}{1}\right]}\cdot\underbset{x_3\geq2}{\left[\binom{2}{2}\binom{1}{1}\right]}\cdot\underbset{x_4\geq3}{\left[\binom{3}{3}\binom{1}{1}\right]}\cdot\left[\binom{17-6}{17-6}\cdot\binom{4+(17-6)-1}{17-6}\right]
+\end{align*}
+
+\textbf{Nota:}
+La solución a este problema es equivalente a la solución de
+\begin{align*}
+x1+x2+x3+x4=13,\quad x1,x2,x3,x4\geq0
+\end{align*}
+
+\subsection*{Ejemplo 3}
+\begin{equation*}
+x_1+x_2+x_3=15
+\end{equation*}
+sujeto a 
+\begin{align*}
+0\leq x_1\leq10,\,x_2=3,\,x_3\geq1
+\end{align*}
+
+% --
+\textbf{Solución:}
+\begin{equation*}
+\left\{\npalomar{x_1} 3 \npalomas{x_3}{1}\right\} -
+\left\{\npalomas{x_1}{11} 3 \npalomas{x_3}{1}\right\}
+\end{equation*}
+\begin{enumerate}
+\item Primero contamos todos los casos
+\begin{align*}
+n(\mathbb{S})&=\underbset{x_2=3}{\left[\binom{3}{3}\cdot\binom{1}{1}\right]}\cdot\underbset{x_3\geq1}{\left[\binom{1}{1}\cdot\binom{1}{1}\right]}\cdot\left[\binom{15-4}{15-4}\cdot\binom{2+(15-4)-1}{15-4}\right]
+\end{align*}
+
+\item Ahora quitamos todas esas opciones donde $x1>10$, es decir $x_1\geq11$.
+\begin{align*}
+\underbset{x_2=3}{\left[\binom{3}{3}\cdot\binom{1}{1}\right]}\cdot\underbset{x_3\geq1}{\left[\binom{1}{1}\cdot\binom{1}{1}\right]}\cdot\underbset{x_1>10}{\left[\binom{11}{11}\binom{1}{1}\right]}\cdot\left[\binom{15-11-3-1}{15-11-3-1}\cdot\binom{2+(15-11-3-1)-1}{15-11-3-1}\right]
+\end{align*}
+\end{enumerate}
+
+\subsection*{Ejemplo 4}
+¿Cuántos números pares de 6 dígitos hay?
+
+\paragraph{Solución:}
+% --
+\begin{equation*}
+\underbset{\dbinom{9}{1}}{\palomas{[1-9]}} \underbset{\dbinom{10}{1}^4}{\palomas{[0-9]} \palomas{[0-9]} \palomas{[0-9]} \palomas{[0-9]}} \underbset{\dbinom{5}{1}}{\color{cyan} \palomas{[0,2,4,6,8]}}
+\end{equation*}
+% --
+\begin{equation*}
+n(\Se)=\left[\binom{9}{1}\cdot\binom{10}{1}^4\cdot\binom{5}{1}\right]
+\end{equation*}
+
+\subsection*{Ejemplo 5}
+¿De cuántas maneras se pueden repartir 27 caramelos idénticos entre 3 niños?
+\paragraph{Solución}
+
+\begin{align*}
+n(\Se)&=\left[\binom{27}{27}\cdot\binom{3+27-1}{27}\right]
+\end{align*}
+
+De aquí se observa que esto es equivalente a
+\begin{align*}
+x_1+x_2+x_3=27,\quad x_1,\,x_2,\,x_3\geq0
+\end{align*}
