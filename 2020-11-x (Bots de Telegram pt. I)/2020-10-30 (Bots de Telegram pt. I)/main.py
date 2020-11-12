@@ -1,5 +1,5 @@
 from config import TOKEN
-from telegram.ext import Updater, CommandHandler, InlineQueryHandler
+from telegram.ext import Updater, CommandHandler, InlineQueryHandler, CallbackQueryHandler
 import bot
 
 
@@ -17,6 +17,9 @@ def main():
     dispatcher.add_handler(CommandHandler("sumar", bot.sumar))
     dispatcher.add_handler(CommandHandler("imagen", bot.imagen))
     dispatcher.add_handler(CommandHandler("histograma", bot.histograma))
+    # inline keyboard
+    dispatcher.add_handler(CommandHandler('teclado', bot.teclado))
+    dispatcher.add_handler(CallbackQueryHandler(bot.opcion))
 
     # inline queries
     """
